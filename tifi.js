@@ -14,7 +14,7 @@ module.exports = function (req, res, next) {
   var itemNumber = req.body.text;
   var itemLink = "http://endeavour:8080/tfs/Open%20Seas/Open%20Seas/_workitems#_a=edit&id=" + itemNumber;
   var botPayload = {
-    text : 'Hello, @everybody ! ' + userName + ' ask me to warn you that item ' + itemNumber + ' is ready to be bashed! ' + itemLink
+    text : 'Hello, @channel ! ' + userName + ' ask me to warn you that item ' + itemNumber + ' is ready to be bashed! ' + itemLink
   };
 
   // avoid infinite loop
