@@ -11,8 +11,11 @@
 
 module.exports = function (req, res, next) {
   var userName = req.body.user_name;
+  var text = req.body.text;
+  var itemNumber = text.split(" ")[1];
+  var itemLink = "http://endeavour:8080/tfs/Open%20Seas/Open%20Seas/_workitems#_a=edit&id=" + itemNumber;
   var botPayload = {
-    text : 'Hello, ' + userName + '!'
+    text : 'Hello, @everybody ! ' + userName + ' ask me to warn you that item ' + itemNumber + ' is ready to be bashed! ' + itemLink
   };
 
   // avoid infinite loop
