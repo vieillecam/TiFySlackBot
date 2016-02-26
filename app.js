@@ -1,5 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var request = require('request');
 var tifiBot = require('./tifi');
 
 var app = express();
