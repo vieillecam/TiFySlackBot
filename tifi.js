@@ -1,3 +1,5 @@
+var request = require('request');
+
 module.exports = function (req, res, next) {
   var userName = req.body.user_name;
   var itemNumber = req.body.text;
@@ -7,10 +9,10 @@ module.exports = function (req, res, next) {
 
   var botPayload = {
     text : 'Hello, @channel ! ' + userName + ' ask me to warn you that item ' + itemNumber + ' is ready to be bashed! ' + itemLink,
-    botPayload.channel = postedChannel
+    channel : postedChannel
   };
 
-  send(botPayload, function (error, status, body) {
+  sendLink(botPayload, function (error, status, body) {
     if (error) {
       return next(error);
     } else if (status !== 200) {
