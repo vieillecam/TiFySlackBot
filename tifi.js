@@ -8,7 +8,7 @@ module.exports = function (req, res, next) {
 
 
   var botPayload = {
-    text : 'Hello, @everyone ! ' + userName + ' ask me to warn you that item ' + itemLink + ' is ready to be bashed! ',
+    text : 'Hello, <@everyone> ! ' + userName + ' ask me to warn you that item ' + itemLink + ' is ready to be bashed! ',
     channel : postedChannel
   };
 
@@ -42,5 +42,5 @@ function sendLink (payload, callback) {
 }
 
 function linkifyItem (itemNumber){
-  return "<http://endeavour:8080/tfs/Open%20Seas/Open%20Seas/_workitems#_a=edit&id=" + itemNumber + ">|" + itemNumber;
+  return "<http://endeavour:8080/tfs/Open%20Seas/Open%20Seas/_workitems#_a=edit&id=" + itemNumber + "|" + itemNumber + ">";
 }
