@@ -8,7 +8,7 @@ module.exports = function (req, res, next) {
 
 
   var botPayload = {
-    text : 'Hello, @channel ! ' + userName + ' ask me to warn you that item ' + itemLink + ' is ready to be bashed! ',
+    text : 'Hello, @everyone ! ' + userName + ' ask me to warn you that item ' + itemLink + ' is ready to be bashed! ',
     channel : postedChannel
   };
 
