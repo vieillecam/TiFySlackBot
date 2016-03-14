@@ -16,6 +16,7 @@ module.exports = function (req, res, next) {
   if (trigger == "TFS[" || "tfs[") {
     itemNumber = itemNumber.slice(itemNumber.indexOf("[") + 1, itemNumber.indexOf("]"));
     botPayload.text = "Here is your link : " + getLinkFrom(itemNumber);
+    botPayload.channel : userName;
   }
 
   sendLink(botPayload, function (error, status, body) {
