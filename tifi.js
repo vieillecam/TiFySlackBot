@@ -13,7 +13,7 @@ module.exports = function (req, res, next) {
     channel : postedChannel
   };
 
-  if (trigger == "TFS[") {
+  if (trigger.toUpperCase() == "TFS[") {
     itemNumber = itemNumber.slice(itemNumber.indexOf("[") + 1, itemNumber.indexOf("]"));
     botPayload.text = "Here is your link : " + getLinkFrom(itemNumber);
     botPayload.channel : userName;
