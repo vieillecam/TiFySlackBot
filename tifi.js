@@ -19,7 +19,8 @@ module.exports = function (req, res, next) {
   if (trigger.toUpperCase() == "TFS[") {
     itemNumber = itemNumber.slice(itemNumber.indexOf("[") + 1, itemNumber.indexOf("]"));
     botPayload.text = "Here is your link : " + getLinkFrom(itemNumber);
-  }
+    return res.status(200).json(botPayload);
+  }else{
 
   sendLink(botPayload, function (error, status, body) {
     if (error) {
@@ -31,6 +32,8 @@ module.exports = function (req, res, next) {
       return res.status(200).end();
     }
   });
+    
+  }
 }
 
 function sendLink (payload, callback) {
