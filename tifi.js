@@ -14,7 +14,7 @@ module.exports = function (req, res, next) {
   };
 
   if (trigger == "TFS[") {
-    itemNumber = trigger.slice(trigger.indexOf("[") + 1, trigger.indexOf("]"));
+    itemNumber = itemNumber.slice(itemNumber.indexOf("[") + 1, itemNumber.indexOf("]"));
     botPayload.text = "Here is your link : " + getLinkFrom(itemNumber);
   }
 
