@@ -4,6 +4,7 @@ module.exports = function (req, res, next) {
   var userName = req.body.user_name;
   var itemNumber = req.body.text;
   var postedChannel = req.body.channel_id;
+  var trigger = req.body.trigger_word;
   var itemLink = linkifyItem(itemNumber);
 
 
@@ -11,6 +12,10 @@ module.exports = function (req, res, next) {
     text : 'Hello, <!everyone|everyone> ! ' + userName + ' ask me to warn you that item ' + itemLink + ' is ready to be bashed! ',
     channel : postedChannel
   };
+
+  if (trigger == "TFS[") {
+    botPayload.text = "Here is your link : " + getLinkFrom(itemNumber);
+  }
 
   sendLink(botPayload, function (error, status, body) {
     if (error) {
@@ -43,4 +48,8 @@ function sendLink (payload, callback) {
 
 function linkifyItem (itemNumber){
   return "<http://endeavour:8080/tfs/Open%20Seas/Open%20Seas/_workitems#_a=edit&id=" + itemNumber + "|" + itemNumber + ">";
+}
+
+function getLinkFrom (itemNumber){
+  return "http://endeavour:8080/tfs/Open%20Seas/Open%20Seas/_workitems#_a=edit&id=" + itemNumber;
 }
