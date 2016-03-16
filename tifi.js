@@ -16,7 +16,7 @@ module.exports = function (req, res, next) {
   console.log('trigger',trigger);
   console.log('reqText',itemNumber);
 
-  if (trigger.toUpperCase() == "TFS[") {
+  if (trigger && trigger.toUpperCase() == "TFS[") {
     itemNumber = itemNumber.slice(itemNumber.indexOf("[") + 1, itemNumber.indexOf("]"));
     botPayload.text = "Here is your link : " + getLinkFrom(itemNumber);
   }
