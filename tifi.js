@@ -2,7 +2,7 @@ var request = require('request');
 
 module.exports = function (req, res, next) {
   var userName = req.body.user_name;
-  var itemNumber = req.body.text;
+  var reqText = req.body.text;
   var postedChannel = req.body.channel_id;
   var trigger = req.body.trigger_word;
   var itemLink = linkifyItem(itemNumber);
@@ -14,11 +14,11 @@ module.exports = function (req, res, next) {
   };
 
   console.log('trigger',trigger);
-  console.log('reqText',itemNumber);
+  console.log('reqText',reqText);
 
   if (trigger && trigger.toUpperCase() == "TFS[") {
-    itemNumber = itemNumber.slice(itemNumber.indexOf("[") + 1, itemNumber.indexOf("]"));
-    botPayload.text = "Here is your link : " + getLinkFrom(itemNumber);
+    reqText = reqText.slice(reqText.indexOf("[") + 1, reqText.indexOf("]"));
+    botPayload.text = "Here is your link : " + getLinkFrom(reqText);
   }
 
   sendLink(botPayload, function (error, status, body) {
