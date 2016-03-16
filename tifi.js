@@ -5,20 +5,24 @@ module.exports = function (req, res, next) {
   var reqText = req.body.text;
   var postedChannel = req.body.channel_id;
   var trigger = req.body.trigger_word;
-  var itemLink = linkifyItem(itemNumber);
-
-
-  var botPayload = {
-    text : 'Hello, <!everyone|everyone> ! ' + userName + ' ask me to warn you that item ' + itemLink + ' is ready to be bashed! ',
-    channel : postedChannel
-  };
+  var itemLink = linkifyItem(reqText);
 
   console.log('trigger',trigger);
   console.log('reqText',reqText);
 
+  var botPayload = {
+    text : null,
+    channel : null
+  };
+
   if (trigger && trigger.toUpperCase() == "TFS[") {
     reqText = reqText.slice(reqText.indexOf("[") + 1, reqText.indexOf("]"));
     botPayload.text = "Here is your link : " + getLinkFrom(reqText);
+  }else{
+    botPayload = {
+      text : 'Hello, <!everyone|everyone> ! ' + userName + ' ask me to warn you that item ' + itemLink + ' is ready to be bashed! ',
+      channel : postedChannel
+    };
   }
 
   sendLink(botPayload, function (error, status, body) {
