@@ -62,7 +62,8 @@ function sendLink (payload, callback) {
 }
 
 function linkifyItem (itemNumber, title){
-  return "<http://endeavour:8080/tfs/Open%20Seas/Open%20Seas/_workitems#_a=edit&id=" + itemNumber + "|" + title | itemNumber + ">";
+  var linkText = title ? title : itemNumber;
+  return "<http://endeavour:8080/tfs/Open%20Seas/Open%20Seas/_workitems#_a=edit&id=" + itemNumber + "|" + linkText + ">";
 }
 
 function getLinkFrom (itemNumber){
