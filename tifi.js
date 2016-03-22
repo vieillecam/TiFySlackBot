@@ -16,8 +16,12 @@ module.exports = function (req, res, next) {
     botPayload.text = "Here is your link : " + getLinkFrom(reqText);
   }else{
 
-    var itemNumber = reqText.substr(0,reqText.indexOf(' '));
-    var title = reqText.substr(reqText.indexOf(' ')+1);
+    var title = null;
+    var itemNumber = reqText;
+    if (reqText.indexOf(' ') != -1) {
+      title = reqText.substr(reqText.indexOf(' ')+1);
+      itemNumber = reqText.substr(0,reqText.indexOf(' '));    
+    }
 
     botPayload = {
       text : 'Hello, <!everyone|everyone> ! ' + userName + ' asked me to warn you that item ' + linkifyItem(itemNumber, title) + ' is ready to be bashed! ',
