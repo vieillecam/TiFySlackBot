@@ -5,10 +5,6 @@ module.exports = function (req, res, next) {
   var reqText = req.body.text;
   var postedChannel = req.body.channel_id;
   var trigger = req.body.trigger_word;
-  var itemLink = linkifyItem(reqText);
-
-  console.log('trigger',trigger);
-  console.log('reqText',reqText);
 
   var botPayload = {
     text : null,
@@ -19,8 +15,12 @@ module.exports = function (req, res, next) {
     reqText = reqText.slice(reqText.indexOf("[") + 1, reqText.indexOf("]"));
     botPayload.text = "Here is your link : " + getLinkFrom(reqText);
   }else{
+
+    var itemNumber = reqText.substr(0,reqText.indexOf(' '));
+    var title = reqText.substr(reqText.indexOf(' ')+1);
+
     botPayload = {
-      text : 'Hello, <!everyone|everyone> ! ' + userName + ' ask me to warn you that item ' + itemLink + ' is ready to be bashed! ',
+      text : 'Hello, <!everyone|everyone> ! ' + userName + ' asked me to warn you that item ' + linkifyItem(itemNumber, title) + ' is ready to be bashed! ',
       channel : postedChannel
     };
   }
@@ -54,8 +54,8 @@ function sendLink (payload, callback) {
   });
 }
 
-function linkifyItem (itemNumber){
-  return "<http://endeavour:8080/tfs/Open%20Seas/Open%20Seas/_workitems#_a=edit&id=" + itemNumber + "|" + itemNumber + ">";
+function linkifyItem (itemNumber, title){
+  return "<http://endeavour:8080/tfs/Open%20Seas/Open%20Seas/_workitems#_a=edit&id=" + itemNumber + "|" + title | itemNumber + ">";
 }
 
 function getLinkFrom (itemNumber){
