@@ -6,6 +6,9 @@ module.exports = function (req, res, next) {
   var postedChannel = req.body.channel_id;
   var trigger = req.body.trigger_word;
 
+  console.log('reqText',reqText);
+  console.log('trigger',trigger);
+
   var botPayload = {
     text : null,
     channel : null
